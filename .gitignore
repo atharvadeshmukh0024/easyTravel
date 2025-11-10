@@ -1,0 +1,37 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-lock.yaml
+package-lock.json
+
+# Build output
+dist/
+.build/
+.next/
+out/
+
+# Prisma
+/prisma/migrations/
+/src/generated/prisma/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Logs
+logs
+*.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+.ntvs
+*.njsproj
+*.sln

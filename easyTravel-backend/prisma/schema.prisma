@@ -1,0 +1,102 @@
+// Prisma schema for easyTravel
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums for better type safety
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum RideStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  password    String
+  phone       String?
+  isDriver    Boolean   @default(false)
+  rides       Ride[]    @relation("DriverRides")
+  bookings    Booking[] @relation("UserBookings")
+  vehicles    Vehicle[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([email])
+}
+
+model Ride {
+  id              Int        @id @default(autoincrement())
+  driver          User       @relation("DriverRides", fields: [driverId], references: [id])
+  driverId        Int
+  origin          String
+  destination     String
+  date            DateTime
+  price           Float
+  seatsAvailable  Int
+  status          RideStatus @default(SCHEDULED)
+  bookings        Booking[]  @relation("RideBookings")
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([date, origin, destination])
+  @@index([driverId])
+}
+
+model Booking {
+  id          Int           @id @default(autoincrement())
+  ride        Ride          @relation("RideBookings", fields: [rideId], references: [id])
+  rideId      Int
+  passenger   User          @relation("UserBookings", fields: [passengerId], references: [id])
+  passengerId Int
+  status      BookingStatus @default(PENDING)
+  review      Review?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@unique([rideId, passengerId])
+  @@index([rideId])
+  @@index([passengerId])
+}
+
+model Vehicle {
+  id           Int      @id @default(autoincrement())
+  driver       User     @relation(fields: [driverId], references: [id])
+  driverId     Int
+  make         String
+  model        String
+  year         Int
+  color        String
+  licensePlate String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([driverId])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  bookingId Int      @unique
+  rating    Int      // 1-5 stars
+  comment   String?
+  createdAt DateTime @default(now())
+
+  @@index([rating])
+}
