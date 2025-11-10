@@ -157,7 +157,7 @@ Each model is relationally linked ensuring stable data flow, eliminating duplica
 
 ## 👨‍💻 About the Author
 
-**Atharva Deshmukh** is a full-stack and cloud developer specializing in Next.js, Node.js, TypeScript, and PostgreSQL. He has hands-on experience building scalable systems, secure REST APIs, and cloud-native applications using AWS services. Atharva has worked on impactful projects like easyTravel, MediVault, and a Twitter ETL analytics pipeline. He is an AWS Certified Cloud Practitioner, SIH 2024 finalist, and passionate about building clean, performant, and real-world solutions.
+**Atharva Deshmukh** is a full-stack and cloud developer specializing in Next.js, Node.js, TypeScript, and PostgreSQL. He has hands-on experience building scalable systems, secure REST APIs, and cloud-native applications using AWS services. Atharva has worked on impactful projects like easyTravel, MediVault, and a Twitter ETL analytics pipeline. He is an AWS Certified Cloud Practitioner, and passionate about building clean, performant, and real-world solutions.
 
 **LinkedIn:** [linkedin.com/in/atharvadeshmukh024](https://www.linkedin.com/in/atharvadeshmukh024)  
 **GitHub:** [github.com/atharvadeshmukh0024](https://github.com/atharvadeshmukh0024)
